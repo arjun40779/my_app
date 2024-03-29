@@ -8,29 +8,44 @@ class ProfileListTile extends StatefulWidget {
   final Widget? child;
 
   const ProfileListTile({
-    super.key,
+    Key? key,
     this.title,
     required this.subTitle,
     this.child,
-  });
+  }) : super(key: key);
 
   @override
   State<ProfileListTile> createState() => _ProfileListTileState();
 }
 
 class _ProfileListTileState extends State<ProfileListTile> {
-  final double paddingVertical = SizeConfig.heightMultiplier * 2;
-  final double paddingHorizontal = SizeConfig.widthMultiplier * 4;
-  final double titleFontSize = SizeConfig.textMultiplier * 4;
-  final FontWeight titleFontWeight = FontWeight.w400;
-  final double subTitleFontSize = SizeConfig.textMultiplier * 4;
-  final FontWeight subTitleFontWeight = FontWeight.bold;
-  final double borderWidth = SizeConfig.textMultiplier * 0.5;
+  late double paddingVertical;
+  late double paddingHorizontal;
+  late double titleFontSize;
+  late FontWeight titleFontWeight;
+  late double subTitleFontSize;
+  late FontWeight subTitleFontWeight;
+  late double borderWidth;
+
+  @override
+  void initState() {
+    super.initState();
+    paddingVertical = SizeConfig.heightMultiplier * 2;
+    paddingHorizontal = SizeConfig.widthMultiplier * 4;
+    titleFontSize = SizeConfig.textMultiplier * 4;
+    titleFontWeight = FontWeight.w400;
+    subTitleFontSize = SizeConfig.textMultiplier * 4;
+    subTitleFontWeight = FontWeight.bold;
+    borderWidth = SizeConfig.textMultiplier * 0.5;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-          vertical: paddingVertical, horizontal: paddingHorizontal),
+        vertical: paddingVertical,
+        horizontal: paddingHorizontal,
+      ),
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
@@ -49,7 +64,7 @@ class _ProfileListTileState extends State<ProfileListTile> {
               style: TextStyle(
                 color: AppColors.greyDark,
                 fontSize: titleFontSize,
-                fontWeight: subTitleFontWeight,
+                fontWeight: titleFontWeight,
               ),
             ),
           Row(

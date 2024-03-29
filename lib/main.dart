@@ -44,6 +44,6 @@ class _MyHomePageState extends State<MyHomePage> {
     print("SafeBlockHorizontal: ${SizeConfig.safeBlockHorizontal}");
     print("SafeBlockVertical: ${SizeConfig.safeBlockVertical}");
     print(SizeConfig.heightMultiplier);
-    return Scaffold(body: HomePage());
+    return const Scaffold(body: HomePage());
   }
 }

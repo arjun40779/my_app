@@ -11,7 +11,8 @@ class PostContainer extends StatelessWidget {
   final String postDescription;
   final String userPhone;
   final String postImgLocation;
-  PostContainer({
+
+  const PostContainer({
     super.key,
     required this.urgent,
     required this.postDate,
@@ -21,19 +22,13 @@ class PostContainer extends StatelessWidget {
     required this.postImgLocation,
   });
 
-  final double paddingVertical = 10;
-  final double paddingHorizontal = 20;
-  final double postDateFontSize = SizeConfig.textMultiplier * 3;
-  final double postTitleFontSize = SizeConfig.textMultiplier * 5;
-  final double postDescriptionFontSize = SizeConfig.textMultiplier * 4;
-  final double userPhoneFontSize = SizeConfig.textMultiplier * 3;
-  final double phoneContainerRadius = SizeConfig.widthMultiplier * 4;
-  final double postImgWidth = SizeConfig.widthMultiplier * 30;
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
-          vertical: paddingVertical, horizontal: paddingHorizontal),
+      padding: const EdgeInsets.symmetric(
+        vertical: 10,
+        horizontal: 20,
+      ),
       decoration: BoxDecoration(
         border: Border(
           top: BorderSide(
@@ -45,73 +40,16 @@ class PostContainer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: Text(
-              postDate,
-              style: TextStyle(
-                fontSize: postDateFontSize,
-                fontWeight: FontWeight.w700,
-                color: urgent ? Colors.red : Colors.black,
-              ),
-            ),
-          ),
+          _buildPostDate(),
+          const SizedBox(height: 5),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(
-                width: SizeConfig.widthMultiplier * 50,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: rowChildren(urgent),
-                    ),
-                    SizedBox(height: SizeConfig.heightMultiplier * 1),
-                    Text(
-                      postTitle,
-                      style: TextStyle(
-                          fontSize: postTitleFontSize,
-                          fontWeight: FontWeight.w700),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      postDescription,
-                      style: TextStyle(
-                          color: AppColors.primaryLight,
-                          fontSize: postDescriptionFontSize),
-                    ),
-                  ],
-                ),
+              Expanded(
+                child: _buildPostContent(),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Image.asset(
-                    postImgLocation,
-                    width: postImgWidth,
-                    fit: BoxFit.contain,
-                  ),
-                  SizedBox(height: SizeConfig.heightMultiplier * 3),
-                  Container(
-                    width: SizeConfig.widthMultiplier * 30,
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 5, vertical: 7),
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(phoneContainerRadius),
-                    ),
-                    child: Center(
-                      child: Text(
-                        userPhone,
-                        style: TextStyle(
-                            fontSize: userPhoneFontSize, color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              _buildPostImageAndPhone(),
             ],
           ),
           PostFooter(urgent: urgent),
@@ -119,22 +57,95 @@ class PostContainer extends StatelessWidget {
       ),
     );
   }
-}
 
-List<Widget> rowChildren(bool urgent) {
-  return [
-    FaIcon(
-      FontAwesomeIcons.circleExclamation,
-      size: SizeConfig.textMultiplier * 4,
-      color: urgent ? Colors.red : const Color.fromARGB(255, 0, 63, 163),
-    ),
-    const SizedBox(width: 10),
-    Text(
-      urgent ? "Needs urgent help" : "Sick Animal",
+  Widget _buildPostDate() {
+    return Text(
+      postDate,
       style: TextStyle(
-        color: urgent ? Colors.red : const Color.fromARGB(255, 0, 63, 163),
-        fontSize: SizeConfig.textMultiplier * 4,
+        fontSize: SizeConfig.textMultiplier * 3,
+        fontWeight: FontWeight.w700,
+        color: urgent ? Colors.red : Colors.black,
       ),
-    ),
-  ];
+    );
+  }
+
+  Widget _buildPostContent() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: rowChildren(),
+        ),
+        SizedBox(height: SizeConfig.heightMultiplier * 1),
+        Text(
+          postTitle,
+          style: TextStyle(
+            fontSize: SizeConfig.textMultiplier * 5,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        const SizedBox(height: 5),
+        Text(
+          postDescription,
+          style: TextStyle(
+            color: AppColors.primaryLight,
+            fontSize: SizeConfig.textMultiplier * 4,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPostImageAndPhone() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Image.asset(
+          postImgLocation,
+          width: SizeConfig.widthMultiplier * 30,
+          fit: BoxFit.contain,
+        ),
+        SizedBox(height: SizeConfig.heightMultiplier * 3),
+        _buildPhoneContainer(),
+      ],
+    );
+  }
+
+  Widget _buildPhoneContainer() {
+    return Container(
+      width: SizeConfig.widthMultiplier * 30,
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 7),
+      decoration: BoxDecoration(
+        color: Colors.black,
+        borderRadius: BorderRadius.circular(SizeConfig.widthMultiplier * 4),
+      ),
+      child: Center(
+        child: Text(
+          userPhone,
+          style: TextStyle(
+            fontSize: SizeConfig.textMultiplier * 3,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+
+  List<Widget> rowChildren() {
+    return [
+      FaIcon(
+        FontAwesomeIcons.circleExclamation,
+        size: SizeConfig.textMultiplier * 4,
+        color: urgent ? Colors.red : const Color.fromARGB(255, 0, 63, 163),
+      ),
+      const SizedBox(width: 10),
+      Text(
+        urgent ? "Needs urgent help" : "Sick Animal",
+        style: TextStyle(
+          color: urgent ? Colors.red : const Color.fromARGB(255, 0, 63, 163),
+          fontSize: SizeConfig.textMultiplier * 4,
+        ),
+      ),
+    ];
+  }
 }
