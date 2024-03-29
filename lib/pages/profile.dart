@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_app/utils/size_config.dart';
 import '../components/my_app_bar.dart';
 import '../components/profile/profile_footer.dart';
 import '../components/profile/profile_list_tiles.dart';
@@ -14,6 +15,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final double fontSize = SizeConfig.textMultiplier * 4;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +40,8 @@ class _ProfilePageState extends State<ProfilePage> {
               onPressed: () {},
               child: Text(
                 "Verify",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style:
+                    TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -49,7 +52,8 @@ class _ProfilePageState extends State<ProfilePage> {
               onPressed: () {},
               child: Text(
                 "Edit",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style:
+                    TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold),
               ),
             ),
           ),

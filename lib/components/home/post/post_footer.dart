@@ -51,7 +51,6 @@ class PostFooter extends StatelessWidget {
               ],
             ),
           ),
-
           // Second group: Icon with rounded border and padding
           Container(
             padding: EdgeInsets.symmetric(
@@ -71,7 +70,6 @@ class PostFooter extends StatelessWidget {
               ),
             ),
           ),
-
           // Third group: Icon with text
           Row(
             children: [

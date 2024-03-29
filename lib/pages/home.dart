@@ -15,7 +15,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   void navigateToCapturePage() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const CapturePage()));
+        context, MaterialPageRoute(builder: (context) => CapturePage()));
   }
 
   final double btnIconSize = 35;

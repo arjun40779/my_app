@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_app/utils/size_config.dart';
 import '../components/my_app_bar.dart';
 
 class CapturePage extends StatelessWidget {
-  const CapturePage({super.key});
+  CapturePage({super.key});
   final String alertBoxText = "Allow Planet for all to access your camera";
-  final double alertBoxfontSize = 13;
+  final double alertBoxfontSize = SizeConfig.textMultiplier * 4;
   final FontWeight alertBoxFontWeight = FontWeight.bold;
 
   @override
