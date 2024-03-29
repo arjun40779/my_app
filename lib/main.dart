@@ -1,10 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:my_app/components/custom_button.dart';
-import 'package:my_app/pages/home.dart';
-import 'package:my_app/utils/size_config.dart';
+import '/pages/home.dart';
+import '/utils/size_config.dart';
 
 void main() {
   runApp(const MyApp());

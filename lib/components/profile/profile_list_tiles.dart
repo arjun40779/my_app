@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/utils/size_config.dart';
 import '../../theme/app_theme.dart';
 
 class ProfileListTile extends StatefulWidget {
@@ -18,18 +19,18 @@ class ProfileListTile extends StatefulWidget {
 }
 
 class _ProfileListTileState extends State<ProfileListTile> {
-  final double paddingVertical = 15;
-  final double paddingHorizontal = 20;
-  final double titleFontSize = 15;
+  final double paddingVertical = SizeConfig.heightMultiplier * 2;
+  final double paddingHorizontal = SizeConfig.widthMultiplier * 4;
+  final double titleFontSize = SizeConfig.textMultiplier * 4;
   final FontWeight titleFontWeight = FontWeight.w400;
-  final double subTitleFontSize = 15;
+  final double subTitleFontSize = SizeConfig.textMultiplier * 4;
   final FontWeight subTitleFontWeight = FontWeight.bold;
-  final double borderWidth = 1;
+  final double borderWidth = SizeConfig.textMultiplier * 0.5;
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-          vertical: paddingVertical, horizontal: paddingVertical),
+          vertical: paddingVertical, horizontal: paddingHorizontal),
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '/utils/size_config.dart';
 
 class ProfileFooter extends StatefulWidget {
   const ProfileFooter({super.key});
@@ -10,10 +11,10 @@ class ProfileFooter extends StatefulWidget {
 
 class _ProfileFooterState extends State<ProfileFooter> {
   final Color fontColor = Colors.red;
-  final double fontSize = 15;
+  final double fontSize = SizeConfig.textMultiplier * 5;
   final FontWeight fontWeight = FontWeight.bold;
-  final double paddingVertical = 15;
-  final double paddingHorizontal = 20;
+  final double paddingVertical = SizeConfig.heightMultiplier * 2;
+  final double paddingHorizontal = SizeConfig.widthMultiplier * 4;
   void handleOnPress() {}
 
   @override

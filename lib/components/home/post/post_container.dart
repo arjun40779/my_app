@@ -11,7 +11,7 @@ class PostContainer extends StatelessWidget {
   final String postDescription;
   final String userPhone;
   final String postImgLocation;
-  const PostContainer({
+  PostContainer({
     super.key,
     required this.urgent,
     required this.postDate,
@@ -23,6 +23,12 @@ class PostContainer extends StatelessWidget {
 
   final double paddingVertical = 10;
   final double paddingHorizontal = 20;
+  final double postDateFontSize = SizeConfig.textMultiplier * 3;
+  final double postTitleFontSize = SizeConfig.textMultiplier * 5;
+  final double postDescriptionFontSize = SizeConfig.textMultiplier * 4;
+  final double userPhoneFontSize = SizeConfig.textMultiplier * 3;
+  final double phoneContainerRadius = SizeConfig.widthMultiplier * 4;
+  final double postImgWidth = SizeConfig.widthMultiplier * 30;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,7 +50,7 @@ class PostContainer extends StatelessWidget {
             child: Text(
               postDate,
               style: TextStyle(
-                fontSize: SizeConfig.textMultiplier * 3,
+                fontSize: postDateFontSize,
                 fontWeight: FontWeight.w700,
                 color: urgent ? Colors.red : Colors.black,
               ),
@@ -66,7 +72,7 @@ class PostContainer extends StatelessWidget {
                     Text(
                       postTitle,
                       style: TextStyle(
-                          fontSize: SizeConfig.textMultiplier * 5,
+                          fontSize: postTitleFontSize,
                           fontWeight: FontWeight.w700),
                     ),
                     const SizedBox(height: 5),
@@ -74,7 +80,7 @@ class PostContainer extends StatelessWidget {
                       postDescription,
                       style: TextStyle(
                           color: AppColors.primaryLight,
-                          fontSize: SizeConfig.textMultiplier * 4),
+                          fontSize: postDescriptionFontSize),
                     ),
                   ],
                 ),
@@ -84,7 +90,7 @@ class PostContainer extends StatelessWidget {
                 children: [
                   Image.asset(
                     postImgLocation,
-                    width: SizeConfig.widthMultiplier * 30,
+                    width: postImgWidth,
                     fit: BoxFit.contain,
                   ),
                   const SizedBox(height: 5),
@@ -94,14 +100,13 @@ class PostContainer extends StatelessWidget {
                         const EdgeInsets.symmetric(horizontal: 5, vertical: 7),
                     decoration: BoxDecoration(
                       color: Colors.black,
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(phoneContainerRadius),
                     ),
                     child: Center(
                       child: Text(
                         userPhone,
                         style: TextStyle(
-                            fontSize: SizeConfig.textMultiplier * 4,
-                            color: Colors.white),
+                            fontSize: userPhoneFontSize, color: Colors.white),
                       ),
                     ),
                   ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/utils/size_config.dart';
 
 enum ButtonVariant { solid, outline, link }
 
@@ -35,8 +36,7 @@ class CustomButton extends StatefulWidget {
 }
 
 class _CustomButtonState extends State<CustomButton> {
-  @override
-  void init() {}
+  final Color linkColor = const Color.fromARGB(255, 51, 16, 193);
   @override
   Widget build(BuildContext context) {
     // responsibe heiht and widht
@@ -44,10 +44,11 @@ class _CustomButtonState extends State<CustomButton> {
     bool isButtonPressed = widget.disabled;
     Color buttonColor = widget.bgColor ?? Colors.blue;
     Color buttonTextColor = widget.textColor ?? Colors.white;
-    double fontSize = 12;
-    double width = 175;
+    double fontSize = SizeConfig.textMultiplier * 3;
+    double width = SizeConfig.widthMultiplier * 60;
     BorderSide buttonBorderSide = const BorderSide(color: Colors.transparent);
     TextDecoration decoration = TextDecoration.none;
+    final double sizedBoxWidth = SizeConfig.widthMultiplier * 2;
 
 // bgcolor text color and outline setup for different variants of buttons
     switch (widget.variant) {
@@ -61,8 +62,7 @@ class _CustomButtonState extends State<CustomButton> {
       case ButtonVariant.link:
         buttonColor = Colors.transparent;
         decoration = TextDecoration.underline;
-        buttonTextColor =
-            widget.textColor ?? const Color.fromARGB(255, 51, 16, 193);
+        buttonTextColor = widget.textColor ?? linkColor;
         break;
 
       default:
@@ -72,68 +72,65 @@ class _CustomButtonState extends State<CustomButton> {
     switch (widget.size) {
       //Small
       case ButtonSize.small:
-        fontSize = 10;
-        width = 125;
+        fontSize = SizeConfig.textMultiplier * 2;
+        width = SizeConfig.widthMultiplier * 40;
         break;
       //large
       case ButtonSize.large:
-        fontSize = 14;
-        width = 225;
+        fontSize = SizeConfig.textMultiplier * 4;
+        width = SizeConfig.widthMultiplier * 20;
         break;
       //block
       case ButtonSize.block:
-        fontSize = 14;
-        // Adjust width if needed
+        fontSize = SizeConfig.textMultiplier * 4;
         break;
       default:
         break;
     }
-    print(isButtonPressed);
-    return // Set height to 40
-        SizedBox(
-            width: widget.size == ButtonSize.block ? null : width,
-            child: TextButton(
-              onPressed: isButtonPressed
-                  ? null
-                  : () {
-                      widget.onPressed();
-                      setState(() {
-                        isButtonPressed = true;
-                      });
-                    },
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                      buttonColor), // Set background color
-                  side:
-                      MaterialStateProperty.all<BorderSide>(buttonBorderSide)),
-              child: Row(
-                children: [
-                  if (widget.leftIcon != null)
-                    Icon(
-                      widget.leftIcon,
-                      size: fontSize,
+
+    return SizedBox(
+        width: widget.size == ButtonSize.block ? null : width,
+        child: TextButton(
+          onPressed: isButtonPressed
+              ? null
+              : () {
+                  widget.onPressed();
+                  setState(() {
+                    isButtonPressed = true;
+                  });
+                },
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  buttonColor), // Set background color
+              side: MaterialStateProperty.all<BorderSide>(buttonBorderSide)),
+          child: Row(
+            children: [
+              if (widget.leftIcon != null)
+                Icon(
+                  widget.leftIcon,
+                  size: fontSize,
+                  color: buttonTextColor,
+                ),
+              if (widget.leftIcon != null) SizedBox(width: sizedBoxWidth),
+              Expanded(
+                child: Text(
+                  widget.text,
+                  style: TextStyle(
                       color: buttonTextColor,
-                    ),
-                  if (widget.leftIcon != null) const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      widget.text,
-                      style: TextStyle(
-                          color: buttonTextColor,
-                          decoration: decoration,
-                          fontSize: fontSize),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  if (widget.rightIcon != null) const SizedBox(width: 8),
-                  if (widget.rightIcon != null)
-                    Icon(
-                      widget.rightIcon,
-                      size: fontSize,
-                      color: buttonTextColor,
-                    ),
-                ],
+                      decoration: decoration,
+                      fontSize: fontSize),
+                  textAlign: TextAlign.center,
+                ),
               ),
-            ));
+              if (widget.rightIcon != null) SizedBox(width: sizedBoxWidth),
+              if (widget.rightIcon != null)
+                Icon(
+                  widget.rightIcon,
+                  size: fontSize,
+                  color: buttonTextColor,
+                ),
+            ],
+          ),
+        ));
   }
 }

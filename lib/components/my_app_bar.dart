@@ -10,7 +10,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MyAppBar({super.key, this.leading = false, required this.title});
   final double fontSize = 15;
   final double iconSize = 20;
-  void navigeteToProfilePage(BuildContext context, Widget child) {
+  void navigeteToProfilePage(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ProfilePage()),

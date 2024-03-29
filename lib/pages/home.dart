@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/theme/app_theme.dart';
+import '/theme/app_theme.dart';
 import '../components/home/post/post_container.dart';
 import '../components/my_app_bar.dart';
 import '../pages/capture.dart';

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:my_app/theme/app_theme.dart';
+import '/theme/app_theme.dart';
+import '/utils/size_config.dart';
 
 class PostFooter extends StatelessWidget {
   final bool urgent;
 
-  const PostFooter({super.key, this.urgent = false});
-
+  PostFooter({super.key, this.urgent = false});
+  final double fontSize = SizeConfig.textMultiplier * 4;
+  final double iconSize = SizeConfig.textMultiplier * 4;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,16 +24,17 @@ class PostFooter extends StatelessWidget {
           // First group: Icon followed by text
           TextButton(
             onPressed: () {},
-            child: const Row(
+            child: Row(
               children: [
                 Icon(
                   Icons.call,
-                  size: 15,
+                  size: iconSize,
                 ),
                 SizedBox(width: 5), // Adjust the spacing between icon and text
                 Text(
                   'Call now',
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: fontSize, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -39,8 +42,9 @@ class PostFooter extends StatelessWidget {
 
           // Second group: Icon with rounded border and padding
           Container(
-            height: 30,
-            width: 30,
+            padding: EdgeInsets.symmetric(
+                vertical: SizeConfig.heightMultiplier * 3,
+                horizontal: SizeConfig.widthMultiplier * 2),
             decoration: const BoxDecoration(
               color: Colors.yellow,
               shape: BoxShape.circle,
@@ -50,22 +54,23 @@ class PostFooter extends StatelessWidget {
                 urgent
                     ? FontAwesomeIcons.hourglass
                     : FontAwesomeIcons.solidClock,
-                size: 13,
+                size: iconSize,
               ),
             ),
           ),
 
           // Third group: Icon with text
-          const Row(
+          Row(
             children: [
               Icon(
                 Icons.location_pin,
-                size: 15,
+                size: iconSize,
               ),
               SizedBox(width: 5), // Adjust the spacing between icon and text
               Text(
                 '2 km away',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                style:
+                    TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold),
               ),
             ],
           ),
