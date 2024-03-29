@@ -10,14 +10,23 @@ class PostFooter extends StatelessWidget {
   final double fontSize = SizeConfig.textMultiplier * 4;
   final double iconSize = SizeConfig.textMultiplier * 4;
   final double sizedBoxWidth = SizeConfig.widthMultiplier * 2;
+  final double hourglasIconPaddingVertical = SizeConfig.heightMultiplier * 3;
+  final double hourglasIconPaddingHorizontal = SizeConfig.widthMultiplier * 2;
+  final double containerPaddingVertical = SizeConfig.heightMultiplier * 2;
+  final double containerPaddinghorizontal = SizeConfig.widthMultiplier * 5;
+  final double containerMarginVertical = SizeConfig.heightMultiplier * 1.5;
+  final double containerRadius = SizeConfig.widthMultiplier * 5;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      decoration: const BoxDecoration(
+      padding: EdgeInsets.symmetric(
+          vertical: containerPaddingVertical,
+          horizontal: containerPaddinghorizontal),
+      margin: EdgeInsets.symmetric(vertical: containerMarginVertical),
+      decoration: BoxDecoration(
         color: AppColors.backgroungColor,
-        borderRadius: BorderRadius.all(Radius.circular(15)),
+        borderRadius: BorderRadius.all(Radius.circular(containerRadius)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,8 +55,9 @@ class PostFooter extends StatelessWidget {
           // Second group: Icon with rounded border and padding
           Container(
             padding: EdgeInsets.symmetric(
-                vertical: SizeConfig.heightMultiplier * 3,
-                horizontal: SizeConfig.widthMultiplier * 2),
+              vertical: hourglasIconPaddingVertical,
+              horizontal: hourglasIconPaddingHorizontal,
+            ),
             decoration: const BoxDecoration(
               color: Colors.yellow,
               shape: BoxShape.circle,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '/utils/size_config.dart';
 import '../../theme/app_theme.dart';
 
 class ProfileVerifiedBadge extends StatefulWidget {
@@ -10,11 +11,11 @@ class ProfileVerifiedBadge extends StatefulWidget {
 }
 
 class _ProfileVerifiedBadgeState extends State<ProfileVerifiedBadge> {
-  final double paddingVertical = 5;
-  final double paddingHorizontal = 10;
-  final double borderRadius = 15;
-  final double fontSize = 12;
-  final double sizedBoxWidth = 5;
+  final double paddingVertical = SizeConfig.heightMultiplier;
+  final double paddingHorizontal = SizeConfig.widthMultiplier * 3;
+  final double borderRadius = SizeConfig.widthMultiplier * 3;
+  final double fontSize = SizeConfig.textMultiplier * 4;
+  final double sizedBoxWidth = SizeConfig.widthMultiplier * 2;
   @override
   Widget build(BuildContext context) {
     return Container(
