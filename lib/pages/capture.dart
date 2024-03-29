@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:my_app/components/my_app_bar.dart';
+import '../components/my_app_bar.dart';
 
 class CapturePage extends StatelessWidget {
   const CapturePage({super.key});
+  final String alertBoxText = "Allow Planet for all to access your camera";
+  final double alertBoxfontSize = 13;
+  final FontWeight alertBoxFontWeight = FontWeight.bold;
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +19,10 @@ class CapturePage extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           children: [
             AlertDialog(
-              title: const Text(
-                "Allow Planet for all to access your camera",
-                style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+              title: Text(
+                alertBoxText,
+                style: TextStyle(
+                    fontSize: alertBoxfontSize, fontWeight: alertBoxFontWeight),
               ),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -38,8 +42,8 @@ class CapturePage extends StatelessWidget {
                         // Add onPressed action for "Deny"
                         Navigator.of(context).pop(); // Close the dialog
                       },
-                      child:
-                          Text("Deny", style: TextStyle(color: Colors.blue))),
+                      child: const Text("Deny",
+                          style: TextStyle(color: Colors.blue))),
                 ],
               ),
             ),

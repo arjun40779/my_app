@@ -9,28 +9,36 @@ class ProfileFooter extends StatefulWidget {
 }
 
 class _ProfileFooterState extends State<ProfileFooter> {
+  final Color fontColor = Colors.red;
+  final double fontSize = 15;
+  final FontWeight fontWeight = FontWeight.bold;
+  final double paddingVertical = 15;
+  final double paddingHorizontal = 20;
+  void handleOnPress() {}
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+      padding: EdgeInsets.symmetric(
+          vertical: paddingVertical, horizontal: paddingHorizontal),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text(
+          Text(
             "Logout",
             style: TextStyle(
-              color: Colors.red,
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
+              color: fontColor,
+              fontSize: fontSize,
+              fontWeight: fontWeight,
             ),
           ),
           IconButton(
-            onPressed: () {},
-            icon: const FaIcon(
+            onPressed: handleOnPress,
+            icon: FaIcon(
               FontAwesomeIcons.arrowRightFromBracket,
-              color: Colors.red,
-              size: 15,
+              color: fontColor,
+              size: fontSize,
             ),
           )
         ],

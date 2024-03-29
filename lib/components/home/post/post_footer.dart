@@ -12,9 +12,9 @@ class PostFooter extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
       margin: const EdgeInsets.symmetric(vertical: 10),
-      decoration: BoxDecoration(
-        color: AppColors().backgroungColor,
-        borderRadius: const BorderRadius.all(Radius.circular(15)),
+      decoration: const BoxDecoration(
+        color: AppColors.backgroungColor,
+        borderRadius: BorderRadius.all(Radius.circular(15)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

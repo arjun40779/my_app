@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/theme/app_theme.dart';
+import '../../theme/app_theme.dart';
 
 class ProfileListTile extends StatefulWidget {
-  /// The title of the list tile.
   final String? title;
-
-  /// The subtitle of the list tile.
   final String subTitle;
-
-  /// An optional widget to be displayed on the right side of the list tile.
-  final Widget? childWidget;
+  final Widget? child;
 
   const ProfileListTile({
     super.key,
     this.title,
     required this.subTitle,
-    this.childWidget,
+    this.child,
   });
 
   @override
@@ -23,15 +18,23 @@ class ProfileListTile extends StatefulWidget {
 }
 
 class _ProfileListTileState extends State<ProfileListTile> {
+  final double paddingVertical = 15;
+  final double paddingHorizontal = 20;
+  final double titleFontSize = 15;
+  final FontWeight titleFontWeight = FontWeight.w400;
+  final double subTitleFontSize = 15;
+  final FontWeight subTitleFontWeight = FontWeight.bold;
+  final double borderWidth = 1;
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
-      decoration: const BoxDecoration(
+      padding: EdgeInsets.symmetric(
+          vertical: paddingVertical, horizontal: paddingVertical),
+      decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
-            color: Colors.grey, // Border color
-            width: 1.0, // Border width
+            color: AppColors.grey, // Border color
+            width: borderWidth, // Border width
           ),
         ),
       ),
@@ -43,9 +46,9 @@ class _ProfileListTileState extends State<ProfileListTile> {
             Text(
               widget.title!,
               style: TextStyle(
-                color: AppColors().grayDark,
-                fontSize: 15,
-                fontWeight: FontWeight.w400,
+                color: AppColors.greyDark,
+                fontSize: titleFontSize,
+                fontWeight: subTitleFontWeight,
               ),
             ),
           Row(
@@ -54,12 +57,12 @@ class _ProfileListTileState extends State<ProfileListTile> {
             children: [
               Text(
                 widget.subTitle,
-                style: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
+                style: TextStyle(
+                  fontSize: subTitleFontSize,
+                  fontWeight: subTitleFontWeight,
                 ),
               ),
-              if (widget.childWidget != null) widget.childWidget!,
+              if (widget.child != null) widget.child!,
             ],
           ),
         ],

@@ -1,5 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_app/components/custom_button.dart';
 import 'package:my_app/pages/home.dart';
+import 'package:my_app/utils/size_config.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,6 +44,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const HomePage();
+    SizeConfig().init(context);
+    print("SafeBlockHorizontal: ${SizeConfig.safeBlockHorizontal}");
+    print("SafeBlockVertical: ${SizeConfig.safeBlockVertical}");
+    print(SizeConfig.heightMultiplier);
+    return Scaffold(body: HomePage());
   }
 }

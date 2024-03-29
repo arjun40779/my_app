@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/components/home/post/post_container.dart';
-import 'package:my_app/components/my_app_bar.dart';
-import 'package:my_app/pages/capture.dart';
-import 'package:my_app/utils/post_data.dart';
+import 'package:my_app/theme/app_theme.dart';
+import '../components/home/post/post_container.dart';
+import '../components/my_app_bar.dart';
+import '../pages/capture.dart';
+import '../utils/post_data.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key}); // Corrected the key parameter
@@ -12,11 +13,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  void navigateToCapturePage() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const CapturePage()));
+  }
+
+  final double btnIconSize = 35;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const MyAppBar(
-        leanding: true,
+        leading: true,
         title: "HOME",
       ),
       body: ListView.builder(
@@ -34,16 +42,12 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const CapturePage()));
-          // Add your onPressed action here
-        },
+        onPressed: navigateToCapturePage,
         shape: const CircleBorder(),
-        backgroundColor: Colors.yellow,
-        child: const Icon(
+        backgroundColor: AppColors.secondary,
+        child: Icon(
           Icons.add,
-          size: 35,
+          size: btnIconSize,
         ), // Change the color as needed
       ),
     );
