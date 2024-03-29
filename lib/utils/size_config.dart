@@ -16,6 +16,8 @@ class SizeConfig {
     _mediaQueryData = MediaQuery.of(context);
     screenWidth = _mediaQueryData.size.width;
     screenHeight = _mediaQueryData.size.height;
+    widthMultiplier = screenWidth / 100;
+    heightMultiplier = screenHeight / 100;
     _safeAreaHorizontal =
         _mediaQueryData.padding.left + _mediaQueryData.padding.right;
     _safeAreaVertical =
@@ -23,7 +25,5 @@ class SizeConfig {
     safeBlockHorizontal = (screenWidth - _safeAreaHorizontal) / 100;
     safeBlockVertical = (screenHeight - _safeAreaVertical) / 100;
     textMultiplier = safeBlockHorizontal;
-    widthMultiplier = safeBlockHorizontal / 100;
-    heightMultiplier = safeBlockVertical / 100;
   }
 }

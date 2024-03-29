@@ -10,9 +10,9 @@ class PostFooter extends StatelessWidget {
   final double fontSize = SizeConfig.textMultiplier * 4;
   final double iconSize = SizeConfig.textMultiplier * 4;
   final double sizedBoxWidth = SizeConfig.widthMultiplier * 2;
-  final double hourglasIconPaddingVertical = SizeConfig.heightMultiplier * 3;
+  final double hourglasIconPaddingVertical = SizeConfig.heightMultiplier * 1;
   final double hourglasIconPaddingHorizontal = SizeConfig.widthMultiplier * 2;
-  final double containerPaddingVertical = SizeConfig.heightMultiplier * 2;
+  final double containerPaddingVertical = SizeConfig.heightMultiplier * 1;
   final double containerPaddinghorizontal = SizeConfig.widthMultiplier * 5;
   final double containerMarginVertical = SizeConfig.heightMultiplier * 1.5;
   final double containerRadius = SizeConfig.widthMultiplier * 5;

@@ -38,7 +38,7 @@ class PostContainer extends StatelessWidget {
         border: Border(
           top: BorderSide(
             color: AppColors.backgroungColor, // Border color
-            width: SizeConfig.widthMultiplier * 4, // Border width
+            width: SizeConfig.widthMultiplier * 3, // Border width
           ),
         ),
       ),
@@ -93,7 +93,7 @@ class PostContainer extends StatelessWidget {
                     width: postImgWidth,
                     fit: BoxFit.contain,
                   ),
-                  const SizedBox(height: 5),
+                  SizedBox(height: SizeConfig.heightMultiplier * 3),
                   Container(
                     width: SizeConfig.widthMultiplier * 30,
                     padding:
