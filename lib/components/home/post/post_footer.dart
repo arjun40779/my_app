@@ -9,6 +9,7 @@ class PostFooter extends StatelessWidget {
   PostFooter({super.key, this.urgent = false});
   final double fontSize = SizeConfig.textMultiplier * 4;
   final double iconSize = SizeConfig.textMultiplier * 4;
+  final double sizedBoxWidth = SizeConfig.widthMultiplier * 2;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,7 +31,9 @@ class PostFooter extends StatelessWidget {
                   Icons.call,
                   size: iconSize,
                 ),
-                SizedBox(width: 5), // Adjust the spacing between icon and text
+                SizedBox(
+                  width: sizedBoxWidth,
+                ), // Adjust the spacing between icon and text
                 Text(
                   'Call now',
                   style: TextStyle(
@@ -66,7 +69,9 @@ class PostFooter extends StatelessWidget {
                 Icons.location_pin,
                 size: iconSize,
               ),
-              SizedBox(width: 5), // Adjust the spacing between icon and text
+              SizedBox(
+                  width:
+                      sizedBoxWidth), // Adjust the spacing between icon and text
               Text(
                 '2 km away',
                 style:
