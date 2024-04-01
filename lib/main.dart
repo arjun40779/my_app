@@ -151,7 +151,7 @@ class Page2 extends StatelessWidget {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Page3()));
       },
-      child: Text("goto page3"),
+      child: const Text("goto page3"),
     ));
   }
 }
@@ -161,7 +161,7 @@ class Page3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text("page3"),
     );
   }
