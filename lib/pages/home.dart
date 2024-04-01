@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/utils/size_config.dart';
-import '/theme/app_theme.dart';
+
 import '../components/home/post/post_container.dart';
 import '../components/my_app_bar.dart';
 import '../pages/capture.dart';
 import '../utils/post_data.dart';
+import '/theme/app_theme.dart';
+import '/utils/size_config.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  final double btnIconSize = 35;
-
+  final double _btnIconSize = SizeConfig.textMultiplier * 10;
+  final EdgeInsets _postContainerPadding =
+      EdgeInsets.symmetric(horizontal: SizeConfig.widthMultiplier * 3);
   void _navigateToCapturePage() {
     Navigator.push(
       context,
@@ -31,8 +33,7 @@ class _HomePageState extends State<HomePage> {
         title: 'HOME',
       ),
       body: Padding(
-        padding:
-            EdgeInsets.symmetric(horizontal: SizeConfig.widthMultiplier * 3),
+        padding: _postContainerPadding,
         child: ListView.builder(
           itemCount: postData.length,
           itemBuilder: (context, index) {
@@ -54,7 +55,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: AppColors.secondary,
         child: Icon(
           Icons.add,
-          size: btnIconSize,
+          size: _btnIconSize,
         ),
       ),
     );

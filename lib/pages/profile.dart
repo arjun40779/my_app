@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:my_app/utils/size_config.dart';
+import '/utils/size_config.dart';
 import '../components/my_app_bar.dart';
 import '../components/profile/profile_footer.dart';
 import '../components/profile/profile_list_tiles.dart';

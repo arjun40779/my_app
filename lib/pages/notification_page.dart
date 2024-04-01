@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '/components/my_app_bar.dart';
 
 class NotificationPage extends StatelessWidget {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '/pages/home.dart';
+import 'components/custom_button.dart';
+import 'theme/app_theme.dart';
 import '/utils/size_config.dart';
 
 void main() {
@@ -44,6 +45,17 @@ class _MyHomePageState extends State<MyHomePage> {
     print("SafeBlockHorizontal: ${SizeConfig.safeBlockHorizontal}");
     print("SafeBlockVertical: ${SizeConfig.safeBlockVertical}");
     print(SizeConfig.heightMultiplier);
-    return const Scaffold(body: HomePage());
+    return Scaffold(
+        body: Center(
+            child: CustomButton(
+                variant: ButtonVariant.outline,
+                size: ButtonSize.small,
+                leftIcon: Icons.arrow_back,
+                rightIcon: Icons.arrow_forward,
+                disabled: true,
+                text: "Button",
+                onPressed: () {
+                  print("hello");
+                })));
   }
 }

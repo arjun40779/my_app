@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '/utils/size_config.dart';
+
 import '../../theme/app_theme.dart';
+import '/utils/size_config.dart';
 
 class ProfileVerifiedBadge extends StatefulWidget {
   const ProfileVerifiedBadge({super.key});

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '/utils/size_config.dart';
+
 import '../../theme/app_theme.dart';
+import '/utils/size_config.dart';
 
 class ProfileListTile extends StatefulWidget {
   final String? title;
@@ -8,11 +9,11 @@ class ProfileListTile extends StatefulWidget {
   final Widget? child;
 
   const ProfileListTile({
-    Key? key,
+    super.key,
     this.title,
     required this.subTitle,
     this.child,
-  }) : super(key: key);
+  });
 
   @override
   State<ProfileListTile> createState() => _ProfileListTileState();

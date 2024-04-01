@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '/utils/size_config.dart';
+
 import '../components/my_app_bar.dart';
+import '/utils/size_config.dart';
 
 class CapturePage extends StatelessWidget {
   CapturePage({Key? key}) : super(key: key);

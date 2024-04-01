@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '/utils/size_config.dart';
 
 enum ButtonVariant { solid, outline, link }
@@ -18,7 +19,7 @@ class CustomButton extends StatefulWidget {
   final bool loading;
 
   const CustomButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.onPressed,
     this.bgColor = Colors.blue,
@@ -29,10 +30,10 @@ class CustomButton extends StatefulWidget {
     this.size = ButtonSize.regular,
     this.disabled = false,
     this.loading = false,
-  }) : super(key: key);
+  });
 
   @override
-  _CustomButtonState createState() => _CustomButtonState();
+  State<CustomButton> createState() => _CustomButtonState();
 }
 
 class _CustomButtonState extends State<CustomButton> {
@@ -45,7 +46,7 @@ class _CustomButtonState extends State<CustomButton> {
     Color buttonTextColor = widget.textColor ?? Colors.white;
     double fontSize = SizeConfig.textMultiplier * 3;
     double width = SizeConfig.widthMultiplier * 60;
-    BorderSide buttonBorderSide = BorderSide(color: Colors.transparent);
+    BorderSide buttonBorderSide = const BorderSide(color: Colors.transparent);
     TextDecoration decoration = TextDecoration.none;
     final double sizedBoxWidth = SizeConfig.widthMultiplier * 2;
 
@@ -68,12 +69,12 @@ class _CustomButtonState extends State<CustomButton> {
     // Set up button size
     switch (widget.size) {
       case ButtonSize.small:
-        fontSize = SizeConfig.textMultiplier * 2;
-        width = SizeConfig.widthMultiplier * 40;
+        fontSize = SizeConfig.textMultiplier * 3;
+        width = SizeConfig.widthMultiplier * 30;
         break;
       case ButtonSize.large:
         fontSize = SizeConfig.textMultiplier * 4;
-        width = SizeConfig.widthMultiplier * 20;
+        width = SizeConfig.widthMultiplier * 40;
         break;
       case ButtonSize.block:
         fontSize = SizeConfig.textMultiplier * 4;
@@ -98,32 +99,35 @@ class _CustomButtonState extends State<CustomButton> {
           side: MaterialStateProperty.all<BorderSide>(buttonBorderSide),
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            if (widget.leftIcon != null)
-              Icon(
-                widget.leftIcon,
-                size: fontSize,
+            widget.leftIcon != null
+                ? Icon(
+                    widget.leftIcon,
+                    size: fontSize,
+                    color: buttonTextColor,
+                  )
+                : SizedBox(
+                    width: 10,
+                  ),
+            Text(
+              widget.text,
+              style: TextStyle(
                 color: buttonTextColor,
+                decoration: decoration,
+                fontSize: fontSize,
               ),
-            if (widget.leftIcon != null) SizedBox(width: sizedBoxWidth),
-            Expanded(
-              child: Text(
-                widget.text,
-                style: TextStyle(
-                  color: buttonTextColor,
-                  decoration: decoration,
-                  fontSize: fontSize,
-                ),
-                textAlign: TextAlign.center,
-              ),
+              textAlign: TextAlign.center,
             ),
-            if (widget.rightIcon != null) SizedBox(width: sizedBoxWidth),
-            if (widget.rightIcon != null)
-              Icon(
-                widget.rightIcon,
-                size: fontSize,
-                color: buttonTextColor,
-              ),
+            widget.rightIcon != null
+                ? Icon(
+                    widget.rightIcon,
+                    size: fontSize,
+                    color: buttonTextColor,
+                  )
+                : SizedBox(
+                    width: 10,
+                  ),
           ],
         ),
       ),
