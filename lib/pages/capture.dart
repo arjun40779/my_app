@@ -5,7 +5,7 @@ import '../components/my_app_bar.dart';
 import '/utils/size_config.dart';
 
 class CapturePage extends StatelessWidget {
-  CapturePage({Key? key}) : super(key: key);
+  CapturePage({super.key});
 
   final String alertBoxText = "Allow Planet for all to access your camera";
   final double alertBoxFontSize = SizeConfig.textMultiplier * 4;
@@ -61,7 +61,7 @@ class CapturePage extends StatelessWidget {
       },
       child: Text(
         text,
-        style: TextStyle(color: Colors.blue),
+        style: const TextStyle(color: Colors.blue),
       ),
     );
   }

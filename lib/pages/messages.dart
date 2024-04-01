@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../main.dart';
 
 class Messages extends StatelessWidget {
@@ -9,8 +10,8 @@ class Messages extends StatelessWidget {
     return Center(
         child: TextButton(
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Page1()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Page1()));
             },
             child: const Text("goto page1")));
   }

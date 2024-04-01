@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lazy_load_indexed_stack/lazy_load_indexed_stack.dart';
+
 import '/theme/app_theme.dart';
 import 'pages/home.dart';
 import 'pages/messages.dart';
@@ -134,9 +135,9 @@ class Page1 extends StatelessWidget {
         child: TextButton(
       onPressed: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Page2()));
+            context, MaterialPageRoute(builder: (context) => const Page2()));
       },
-      child: Text("goto page2"),
+      child: const Text("goto page2"),
     ));
   }
 }
@@ -150,7 +151,7 @@ class Page2 extends StatelessWidget {
         child: TextButton(
       onPressed: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Page3()));
+            context, MaterialPageRoute(builder: (context) => const Page3()));
       },
       child: const Text("goto page3"),
     ));
