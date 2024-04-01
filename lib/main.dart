@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'components/navigation_bar.dart';
+import 'pages/bookmarks.dart';
+import 'pages/home.dart';
+import 'pages/messages.dart';
+import 'pages/notification_page.dart';
+import 'pages/profile.dart';
 import 'components/custom_button.dart';
 import 'theme/app_theme.dart';
 import '/utils/size_config.dart';
@@ -34,28 +40,32 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
   final String title;
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int currPageIndex = 0;
+  void changePageIndex(int ind) {
+    setState(() {
+      currPageIndex = ind;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    print("SafeBlockHorizontal: ${SizeConfig.safeBlockHorizontal}");
-    print("SafeBlockVertical: ${SizeConfig.safeBlockVertical}");
-    print(SizeConfig.heightMultiplier);
+
     return Scaffold(
-        body: Center(
-            child: CustomButton(
-                variant: ButtonVariant.outline,
-                size: ButtonSize.small,
-                leftIcon: Icons.arrow_back,
-                rightIcon: Icons.arrow_forward,
-                disabled: true,
-                text: "Button",
-                onPressed: () {
-                  print("hello");
-                })));
+        bottomNavigationBar: NavBar(
+            currPageIndex: currPageIndex, changePageIndex: changePageIndex),
+        body: const <Widget>[
+          HomePage(),
+          NotificationPage(),
+          ProfilePage(),
+          Messages(),
+          Bookmarks()
+        ][currPageIndex]);
   }
 }

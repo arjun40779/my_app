@@ -48,7 +48,6 @@ class _CustomButtonState extends State<CustomButton> {
     double width = SizeConfig.widthMultiplier * 60;
     BorderSide buttonBorderSide = const BorderSide(color: Colors.transparent);
     TextDecoration decoration = TextDecoration.none;
-    final double sizedBoxWidth = SizeConfig.widthMultiplier * 2;
 
     // Set up button appearance based on variant
     switch (widget.variant) {
@@ -107,7 +106,7 @@ class _CustomButtonState extends State<CustomButton> {
                     size: fontSize,
                     color: buttonTextColor,
                   )
-                : SizedBox(
+                : const SizedBox(
                     width: 10,
                   ),
             Text(
@@ -125,7 +124,7 @@ class _CustomButtonState extends State<CustomButton> {
                     size: fontSize,
                     color: buttonTextColor,
                   )
-                : SizedBox(
+                : const SizedBox(
                     width: 10,
                   ),
           ],

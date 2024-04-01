@@ -1,11 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '/utils/size_config.dart';
+
 import '../components/my_app_bar.dart';
 import '../components/profile/profile_footer.dart';
 import '../components/profile/profile_list_tiles.dart';
 import '../components/profile/profile_varified_badge.dart';
+import '/utils/size_config.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
