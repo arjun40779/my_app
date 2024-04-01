@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lazy_load_indexed_stack/lazy_load_indexed_stack.dart';
+import 'package:my_app/theme/app_theme.dart';
 import 'pages/home.dart';
 import 'pages/messages.dart';
 import 'pages/notification_page.dart';
@@ -93,7 +94,7 @@ class _MainLayoutState extends State<MainLayout> {
           }
         },
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.redAccent,
+        selectedItemColor: AppColors.secondary,
         unselectedItemColor: Colors.grey,
         showSelectedLabels: false,
         showUnselectedLabels: false,
