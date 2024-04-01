@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
 
-import 'home.dart';
-
 class Messages extends StatelessWidget {
   const Messages({super.key});
 
