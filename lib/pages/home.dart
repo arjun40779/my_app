@@ -1,4 +1,8 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../components/my_app_bar.dart';
 import '../components/post/post_container.dart';
@@ -25,32 +29,29 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  late Future<List<PostData>> postDataList;
+  Future<List<PostData>> getData() async {
+    final String response =
+        await rootBundle.loadString('assets/post_data.json');
+    final List<dynamic> decodedData = json.decode(response);
+    final List<PostData> postDataList =
+        decodedData.map((item) => PostData.fromJson(item)).toList();
+    return postDataList;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    postDataList = getData();
+  }
+
   @override
   Widget build(BuildContext context) {
-    String filePath = 'assets/post_data.json';
-    List<PostData> postDataList = getPostDataFromJsonFile(filePath);
     return Scaffold(
       appBar: MyAppBar(
-        leading: true,
         title: 'HOME',
       ),
-      body: Padding(
-        padding: _postContainerPadding,
-        child: ListView.builder(
-          itemCount: postDataList.length,
-          itemBuilder: (context, index) {
-            final data = postDataList[index];
-            return PostContainer(
-              urgent: data.urgent,
-              postDate: data.postDate,
-              postTitle: data.postTitle,
-              postDescription: data.postDescription,
-              postImgLocation: data.postImgLocation,
-              userPhone: data.userPhone,
-            );
-          },
-        ),
-      ),
+      body: Padding(padding: _postContainerPadding, child: _listBuilder()),
       floatingActionButton: FloatingActionButton(
         onPressed: _navigateToCapturePage,
         shape: const CircleBorder(),
@@ -60,6 +61,35 @@ class _HomePageState extends State<HomePage> {
           size: _btnIconSize,
         ),
       ),
+    );
+  }
+
+  Widget _listBuilder() {
+    return FutureBuilder<List<PostData>>(
+      future: getData(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else {
+          List<PostData> postDataList = snapshot.data!;
+          return ListView.builder(
+            itemCount: postDataList.length,
+            itemBuilder: (context, index) {
+              final data = postDataList[index];
+              return PostContainer(
+                urgent: data.urgent,
+                postDate: data.postDate,
+                postTitle: data.postTitle,
+                postDescription: data.postDescription,
+                postImgLocation: data.postImgLocation,
+                userPhone: data.userPhone,
+              );
+            },
+          );
+        }
+      },
     );
   }
 }

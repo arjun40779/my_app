@@ -62,16 +62,6 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             style: TextStyle(color: Colors.white, fontSize: fontSize),
           ),
           centerTitle: true,
-          actions: [
-            IconButton(
-              onPressed: () => navigeteToNotificationPage(context),
-              icon: Icon(
-                FontAwesomeIcons.solidBell,
-                size: fontSize,
-                color: AppColors.grey,
-              ),
-            ),
-          ],
         ),
       ),
     );

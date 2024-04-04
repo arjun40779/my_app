@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lazy_load_indexed_stack/lazy_load_indexed_stack.dart';
-import 'pages/gallery.dart';
-import 'pages/list_page.dart';
 
 import '/theme/app_theme.dart';
+import 'pages/gallery.dart';
 import 'pages/home.dart';
+import 'pages/list_page.dart';
 import 'pages/messages.dart';
 import 'pages/notification_page.dart';
 import 'pages/profile.dart';

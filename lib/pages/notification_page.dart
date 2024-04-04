@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../theme/app_theme.dart';
 import '../utils/size_config.dart';
-
 import '/components/my_app_bar.dart';
 
 class NotificationPage extends StatefulWidget {

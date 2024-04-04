@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
+
+import 'package:flutter/services.dart';
 
 class PostData {
   final bool urgent;
@@ -30,14 +32,12 @@ class PostData {
   }
 }
 
-List<PostData> getPostDataFromJsonFile(String filePath) {
+Future<List<PostData>> getPostDataFromJsonFile(String filePath) async {
   try {
-    File file = File(filePath);
-    String contents = file.readAsStringSync();
-    List<dynamic> jsonData = json.decode(contents);
-    List<PostData> postDataList =
-        jsonData.map((json) => PostData.fromJson(json)).toList();
-    return postDataList;
+    final String response = await rootBundle.loadString(filePath);
+    final data = await json.decode(response);
+
+    return data;
   } catch (e) {
     return [];
   }

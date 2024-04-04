@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/utils/validator_functions.dart';
+import '../components/my_app_bar.dart';
 import '../components/custom_button.dart';
 import '../components/input_text_formatter/date_formatter.dart';
 import '../components/input_text_formatter/ohip_text_formatter.dart';
@@ -45,64 +47,69 @@ class _MessagesState extends State<Messages> {
       horizontal: SizeConfig.widthMultiplier * 2);
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Padding(
-        padding: paddingform,
-        child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-          // Card Input Field
-          CustomInput<String>(
-            required: true,
-            label: 'Date of Birth',
-            focusNode: _dobFocusNode,
-            controller: _dobController,
-            placeholderText: "YYYY-MM-DD",
-            type: TextInputType.datetime,
-            validation: _validateDate,
-            textFormatters: [
-              DateFormatter(),
-            ],
-            rightIconButton: IconButton(
-              onPressed: () {
-                _selectDate(context);
-              },
-              icon: const Icon(Icons.calendar_month_outlined),
-            ),
-          ),
-          CustomInput(
-            label: "OHIP (optional)",
-            placeholderText: "Enter OHIP number",
-            controller: _oHIPController,
-            focusNode: _oHIPFocusNode,
-            type: TextInputType.number,
-            validation: (value) {
-              if (value.isNotEmpty && value.length < 12) {
-                return "OHIP Number must be 10 digits";
-              }
-              return null;
-            },
-            textFormatters: [
-              OHIPNumberFormatter(),
-            ],
-            onChange: (value) {
-              return value;
-            },
-          ),
-          Padding(
-            padding:
-                EdgeInsets.symmetric(vertical: SizeConfig.heightMultiplier * 2),
-            child: CustomButton(
-                size: ButtonSize.regular,
+    return Scaffold(
+      appBar: MyAppBar(
+        title: "Messages",
+      ),
+      body: Form(
+        key: _formKey,
+        child: Padding(
+          padding: paddingform,
+          child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+            // Card Input Field
+            CustomInput<String>(
+              required: true,
+              label: 'Date of Birth',
+              focusNode: _dobFocusNode,
+              controller: _dobController,
+              placeholderText: "YYYY-MM-DD",
+              type: TextInputType.datetime,
+              validation: InputValidator.validateDate,
+              textFormatters: [
+                DateFormatter(),
+              ],
+              rightIconButton: IconButton(
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Processing Data')),
-                    );
-                  }
+                  _selectDate(context);
                 },
-                text: "SUBMIT"),
-          ),
-        ]),
+                icon: const Icon(Icons.calendar_month_outlined),
+              ),
+            ),
+            CustomInput(
+              label: "OHIP (optional)",
+              placeholderText: "Enter OHIP number",
+              controller: _oHIPController,
+              focusNode: _oHIPFocusNode,
+              type: TextInputType.number,
+              validation: (value) {
+                if (value.isNotEmpty && value.length < 12) {
+                  return "OHIP Number must be 10 digits";
+                }
+                return null;
+              },
+              textFormatters: [
+                OHIPNumberFormatter(),
+              ],
+              onChange: (value) {
+                return value;
+              },
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  vertical: SizeConfig.heightMultiplier * 2),
+              child: CustomButton(
+                  size: ButtonSize.regular,
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Processing Data')),
+                      );
+                    }
+                  },
+                  text: "SUBMIT"),
+            ),
+          ]),
+        ),
       ),
     );
   }
@@ -125,50 +132,5 @@ class _MessagesState extends State<Messages> {
         _dobController!.text = "$year-$month-$day";
       });
     }
-  }
-
-  int getDaysInMonth(int year, int month) {
-    DateTime firstDayOfNextMonth = DateTime(year, month + 1, 1);
-    DateTime lastDayOfCurrentMonth =
-        firstDayOfNextMonth.subtract(const Duration(days: 1));
-    return lastDayOfCurrentMonth.day;
-  }
-
-  String? _validateDate(value) {
-    List<String> date = value.split("-");
-    DateTime currDate = DateTime.now();
-    int currYear = currDate.year;
-    int currMonth = currDate.month;
-    int currDay = currDate.day;
-
-    if (value.isNotEmpty) {
-      if (value.length > 3) {
-        int year = int.parse(date[0]);
-
-        if (year < 1900 || year > currYear) {
-          return "Invalid year";
-        }
-        if (value.length > 6) {
-          int month = int.parse(date[1]);
-          if (month < 1 ||
-              month > 12 ||
-              (currYear == year && month > currMonth)) {
-            return "Invalid month";
-          }
-          if (value.length > 9) {
-            int day = int.parse(date[2]);
-            int maxDateInMonth = getDaysInMonth(year, month);
-
-            if (day < 1 ||
-                day > maxDateInMonth ||
-                (currYear == year && currMonth == month && day > currDay)) {
-              return "invalid day";
-            }
-          }
-        }
-      }
-    }
-    if (value.length < 10) return "please enter valid date";
-    return null;
   }
 }
