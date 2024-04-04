@@ -51,6 +51,26 @@ class _MainLayoutState extends State<MainLayout> {
   final _galleryKey = GlobalKey<NavigatorState>();
   final _listPageKey = GlobalKey<NavigatorState>();
 
+  NavigatorState? _getCurrentNavigator() {
+    switch (_currentIndex) {
+      case 0:
+        return _homePageKey.currentState;
+      case 1:
+        return _profilePageKey.currentState;
+      case 2:
+        return _messagesKey.currentState;
+      case 3:
+        return _notificationKey.currentState;
+      case 4:
+        _galleryKey.currentContext;
+      case 5:
+        _listPageKey.currentContext;
+      default:
+        return null;
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,25 +153,5 @@ class _MainLayoutState extends State<MainLayout> {
         ],
       ),
     );
-  }
-
-  NavigatorState? _getCurrentNavigator() {
-    switch (_currentIndex) {
-      case 0:
-        return _homePageKey.currentState;
-      case 1:
-        return _profilePageKey.currentState;
-      case 2:
-        return _messagesKey.currentState;
-      case 3:
-        return _notificationKey.currentState;
-      case 4:
-        _galleryKey.currentContext;
-      case 5:
-        _listPageKey.currentContext;
-      default:
-        return null;
-    }
-    return null;
   }
 }
