@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../theme/app_theme.dart';
 import '/utils/size_config.dart';
 
 enum ButtonVariant { solid, outline, link }
@@ -22,7 +23,7 @@ class CustomButton extends StatefulWidget {
     super.key,
     required this.text,
     required this.onPressed,
-    this.bgColor = Colors.blue,
+    this.bgColor = AppColors.secondary,
     this.textColor,
     this.leftIcon,
     this.rightIcon,
@@ -37,14 +38,14 @@ class CustomButton extends StatefulWidget {
 }
 
 class _CustomButtonState extends State<CustomButton> {
-  final Color linkColor = const Color.fromARGB(255, 51, 16, 193);
+  final Color linkColor = AppColors.blue;
 
   @override
   Widget build(BuildContext context) {
     bool isButtonPressed = widget.disabled;
     Color buttonColor = widget.bgColor ?? Colors.blue;
     Color buttonTextColor = widget.textColor ?? Colors.white;
-    double fontSize = SizeConfig.textMultiplier * 3;
+    double fontSize = SizeConfig.textMultiplier * 4.5;
     double width = SizeConfig.widthMultiplier * 60;
     BorderSide buttonBorderSide = const BorderSide(color: Colors.transparent);
     TextDecoration decoration = TextDecoration.none;
@@ -106,8 +107,8 @@ class _CustomButtonState extends State<CustomButton> {
                     size: fontSize,
                     color: buttonTextColor,
                   )
-                : const SizedBox(
-                    width: 10,
+                : SizedBox(
+                    width: SizeConfig.widthMultiplier * 3,
                   ),
             Text(
               widget.text,
@@ -124,8 +125,8 @@ class _CustomButtonState extends State<CustomButton> {
                     size: fontSize,
                     color: buttonTextColor,
                   )
-                : const SizedBox(
-                    width: 10,
+                : SizedBox(
+                    width: SizeConfig.widthMultiplier * 3,
                   ),
           ],
         ),

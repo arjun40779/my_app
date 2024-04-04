@@ -12,16 +12,17 @@ class ProfileVerifiedBadge extends StatefulWidget {
 }
 
 class _ProfileVerifiedBadgeState extends State<ProfileVerifiedBadge> {
-  final double paddingVertical = SizeConfig.heightMultiplier;
-  final double paddingHorizontal = SizeConfig.widthMultiplier * 3;
   final double borderRadius = SizeConfig.widthMultiplier * 3;
   final double fontSize = SizeConfig.textMultiplier * 4;
   final double sizedBoxWidth = SizeConfig.widthMultiplier * 2;
+
+  final EdgeInsets paddingBadge = EdgeInsets.symmetric(
+      vertical: SizeConfig.heightMultiplier * 0.7,
+      horizontal: SizeConfig.widthMultiplier * 3);
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
-          vertical: paddingVertical, horizontal: paddingHorizontal),
+      padding: paddingBadge,
       decoration: BoxDecoration(
         color: AppColors.green,
         borderRadius:

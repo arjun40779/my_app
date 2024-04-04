@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../theme/app_theme.dart';
 import '/utils/size_config.dart';
 
 class ProfileFooter extends StatefulWidget {
@@ -12,29 +13,22 @@ class ProfileFooter extends StatefulWidget {
 
 class _ProfileFooterState extends State<ProfileFooter> {
   final Color fontColor = Colors.red;
-  final double fontSize = SizeConfig.textMultiplier * 5;
+  final double fontSize = SizeConfig.textMultiplier * 4;
   final FontWeight fontWeight = FontWeight.bold;
-  final double paddingVertical = SizeConfig.heightMultiplier * 2;
-  final double paddingHorizontal = SizeConfig.widthMultiplier * 4;
+  final EdgeInsets paddingFooter = EdgeInsets.symmetric(
+      vertical: SizeConfig.heightMultiplier * 2,
+      horizontal: SizeConfig.widthMultiplier * 4);
   void handleOnPress() {}
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-          vertical: paddingVertical, horizontal: paddingHorizontal),
+      padding: paddingFooter,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            "Logout",
-            style: TextStyle(
-              color: fontColor,
-              fontSize: fontSize,
-              fontWeight: fontWeight,
-            ),
-          ),
+          Text("Logout", style: AppTextStyle.heading(color: Colors.red)),
           IconButton(
             onPressed: handleOnPress,
             icon: FaIcon(

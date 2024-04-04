@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lazy_load_indexed_stack/lazy_load_indexed_stack.dart';
+import 'pages/gallery.dart';
+import 'pages/list_page.dart';
 
 import '/theme/app_theme.dart';
 import 'pages/home.dart';
@@ -41,10 +44,12 @@ class MainLayout extends StatefulWidget {
 class _MainLayoutState extends State<MainLayout> {
   int _currentIndex = 0;
 
-  final _page1 = GlobalKey<NavigatorState>();
-  final _page2 = GlobalKey<NavigatorState>();
-  final _page3 = GlobalKey<NavigatorState>();
-  final _page4 = GlobalKey<NavigatorState>();
+  final _homePageKey = GlobalKey<NavigatorState>();
+  final _profilePageKey = GlobalKey<NavigatorState>();
+  final _messagesKey = GlobalKey<NavigatorState>();
+  final _notificationKey = GlobalKey<NavigatorState>();
+  final _galleryKey = GlobalKey<NavigatorState>();
+  final _listPageKey = GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
@@ -53,31 +58,45 @@ class _MainLayoutState extends State<MainLayout> {
         index: _currentIndex,
         children: [
           Navigator(
-            key: _page1,
+            key: _homePageKey,
             onGenerateRoute: (route) => MaterialPageRoute(
               settings: route,
               builder: (context) => const HomePage(),
             ),
           ),
           Navigator(
-            key: _page2,
+            key: _profilePageKey,
             onGenerateRoute: (route) => MaterialPageRoute(
               settings: route,
               builder: (context) => const ProfilePage(),
             ),
           ),
           Navigator(
-            key: _page3,
+            key: _messagesKey,
             onGenerateRoute: (route) => MaterialPageRoute(
               settings: route,
               builder: (context) => const Messages(),
             ),
           ),
           Navigator(
-            key: _page4,
+            key: _notificationKey,
             onGenerateRoute: (route) => MaterialPageRoute(
               settings: route,
               builder: (context) => const NotificationPage(),
+            ),
+          ),
+          Navigator(
+            key: _galleryKey,
+            onGenerateRoute: (route) => MaterialPageRoute(
+              settings: route,
+              builder: (context) => const GalleryPage(),
+            ),
+          ),
+          Navigator(
+            key: _listPageKey,
+            onGenerateRoute: (route) => MaterialPageRoute(
+              settings: route,
+              builder: (context) => const ListPage(),
             ),
           ),
         ],
@@ -96,7 +115,7 @@ class _MainLayoutState extends State<MainLayout> {
         },
         type: BottomNavigationBarType.fixed,
         selectedItemColor: AppColors.secondary,
-        unselectedItemColor: Colors.grey,
+        unselectedItemColor: AppColors.grey,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: const <BottomNavigationBarItem>[
@@ -105,6 +124,12 @@ class _MainLayoutState extends State<MainLayout> {
           BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Messages'),
           BottomNavigationBarItem(
               icon: Icon(Icons.notifications), label: 'Notifications'),
+          BottomNavigationBarItem(
+              icon: FaIcon(
+                FontAwesomeIcons.photoFilm,
+              ),
+              label: "Gallery"),
+          BottomNavigationBarItem(icon: Icon(Icons.list), label: "list")
         ],
       ),
     );
@@ -113,58 +138,20 @@ class _MainLayoutState extends State<MainLayout> {
   NavigatorState? _getCurrentNavigator() {
     switch (_currentIndex) {
       case 0:
-        return _page1.currentState;
+        return _homePageKey.currentState;
       case 1:
-        return _page2.currentState;
+        return _profilePageKey.currentState;
       case 2:
-        return _page3.currentState;
+        return _messagesKey.currentState;
       case 3:
-        return _page4.currentState;
+        return _notificationKey.currentState;
+      case 4:
+        _galleryKey.currentContext;
+      case 5:
+        _listPageKey.currentContext;
       default:
         return null;
     }
-  }
-}
-
-class Page1 extends StatelessWidget {
-  const Page1({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: TextButton(
-      onPressed: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const Page2()));
-      },
-      child: const Text("goto page2"),
-    ));
-  }
-}
-
-class Page2 extends StatelessWidget {
-  const Page2({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: TextButton(
-      onPressed: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const Page3()));
-      },
-      child: const Text("goto page3"),
-    ));
-  }
-}
-
-class Page3 extends StatelessWidget {
-  const Page3({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text("page3"),
-    );
+    return null;
   }
 }

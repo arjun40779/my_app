@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../components/home/post/post_container.dart';
 import '../components/my_app_bar.dart';
+import '../components/post/post_container.dart';
 import '../pages/capture.dart';
 import '../utils/post_data.dart';
 import '/theme/app_theme.dart';
@@ -27,24 +27,26 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    String filePath = 'assets/post_data.json';
+    List<PostData> postDataList = getPostDataFromJsonFile(filePath);
     return Scaffold(
-      appBar: const MyAppBar(
+      appBar: MyAppBar(
         leading: true,
         title: 'HOME',
       ),
       body: Padding(
         padding: _postContainerPadding,
         child: ListView.builder(
-          itemCount: postData.length,
+          itemCount: postDataList.length,
           itemBuilder: (context, index) {
-            final data = postData[index];
+            final data = postDataList[index];
             return PostContainer(
-              urgent: data['urgent'] as bool,
-              postDate: data['postDate'] as String,
-              postTitle: data['postTitle'] as String,
-              postDescription: data['postDescription'] as String,
-              postImgLocation: data['postImgLocation'] as String,
-              userPhone: data['userPhone'] as String,
+              urgent: data.urgent,
+              postDate: data.postDate,
+              postTitle: data.postTitle,
+              postDescription: data.postDescription,
+              postImgLocation: data.postImgLocation,
+              userPhone: data.userPhone,
             );
           },
         ),

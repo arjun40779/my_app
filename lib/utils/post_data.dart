@@ -1,38 +1,44 @@
-final postData = [
-  {
-    "urgent": true,
-    "postTitle": "Charlie, a playful cat got stuck in a fence",
-    "postDescription":
-        "Nilo, a curious cat wandered off in City Park. Help find him near the fountain",
-    "postDate": "Today | 03 : 12 PM",
-    "userPhone": "9876543210",
-    "postImgLocation": "assets/images/cat.jpg"
-  },
-  {
-    "urgent": false,
-    "postTitle": "Charlie, a playful dog got stuck in a fence",
-    "postDescription":
-        "Nilo, a curious cat wandered off in City Park. Help find him near the fountain",
-    "postDate": "Today | 03 : 12 PM",
-    "userPhone": "9876543210",
-    "postImgLocation": "assets/images/dog2.jpg"
-  },
-  {
-    "urgent": false,
-    "postTitle": "Charlie, a playful dog got stuck in a fence",
-    "postDescription":
-        "Nilo, a curious cat wandered off in City Park. Help find him near the fountain",
-    "postDate": "Today | 03 : 12 PM",
-    "userPhone": "9876543210",
-    "postImgLocation": "assets/images/dog.jpg"
-  },
-  {
-    "urgent": true,
-    "postTitle": "Tommy, a playful cat got stuck in a fence",
-    "postDescription":
-        "Nilo, a curious cat wandered off in City Park. Help find him near the fountain",
-    "postDate": "Today | 03 : 12 PM",
-    "userPhone": "9876543210",
-    "postImgLocation": "assets/images/cat2.jpg"
+import 'dart:convert';
+import 'dart:io';
+
+class PostData {
+  final bool urgent;
+  final String postTitle;
+  final String postDescription;
+  final String postDate;
+  final String userPhone;
+  final String postImgLocation;
+
+  PostData({
+    required this.urgent,
+    required this.postTitle,
+    required this.postDescription,
+    required this.postDate,
+    required this.userPhone,
+    required this.postImgLocation,
+  });
+
+  factory PostData.fromJson(Map<String, dynamic> json) {
+    return PostData(
+      urgent: json['urgent'],
+      postTitle: json['postTitle'],
+      postDescription: json['postDescription'],
+      postDate: json['postDate'],
+      userPhone: json['userPhone'],
+      postImgLocation: json['postImgLocation'],
+    );
   }
-];
+}
+
+List<PostData> getPostDataFromJsonFile(String filePath) {
+  try {
+    File file = File(filePath);
+    String contents = file.readAsStringSync();
+    List<dynamic> jsonData = json.decode(contents);
+    List<PostData> postDataList =
+        jsonData.map((json) => PostData.fromJson(json)).toList();
+    return postDataList;
+  } catch (e) {
+    return [];
+  }
+}

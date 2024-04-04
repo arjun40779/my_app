@@ -4,13 +4,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../pages/notification_page.dart';
 import '../pages/profile.dart';
 import '../theme/app_theme.dart';
+import '/utils/size_config.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool leading;
   final String title;
-  const MyAppBar({super.key, this.leading = false, required this.title});
-  final double fontSize = 15;
-  final double iconSize = 20;
+  MyAppBar({super.key, this.leading = false, required this.title});
+  final double fontSize = SizeConfig.textMultiplier * 5;
+  final double iconSize = SizeConfig.textMultiplier * 6;
   void navigeteToProfilePage(BuildContext context) {
     Navigator.push(
       context,

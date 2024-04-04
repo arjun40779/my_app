@@ -8,23 +8,25 @@ class PostFooter extends StatelessWidget {
   final bool urgent;
 
   PostFooter({super.key, this.urgent = false});
+  final EdgeInsets paddingHourglassContainer = EdgeInsets.symmetric(
+      vertical: SizeConfig.heightMultiplier,
+      horizontal: 2 * SizeConfig.widthMultiplier);
+  final EdgeInsets paddingContainer = EdgeInsets.symmetric(
+      vertical: SizeConfig.heightMultiplier * 1,
+      horizontal: SizeConfig.widthMultiplier * 5);
+  final EdgeInsets marginContainer =
+      EdgeInsets.symmetric(vertical: SizeConfig.heightMultiplier * 1.5);
+
+  final double containerRadius = SizeConfig.widthMultiplier * 5;
   final double fontSize = SizeConfig.textMultiplier * 4;
   final double iconSize = SizeConfig.textMultiplier * 4;
   final double sizedBoxWidth = SizeConfig.widthMultiplier * 2;
-  final double hourglasIconPaddingVertical = SizeConfig.heightMultiplier * 1;
-  final double hourglasIconPaddingHorizontal = SizeConfig.widthMultiplier * 2;
-  final double containerPaddingVertical = SizeConfig.heightMultiplier * 1;
-  final double containerPaddinghorizontal = SizeConfig.widthMultiplier * 5;
-  final double containerMarginVertical = SizeConfig.heightMultiplier * 1.5;
-  final double containerRadius = SizeConfig.widthMultiplier * 5;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
-          vertical: containerPaddingVertical,
-          horizontal: containerPaddinghorizontal),
-      margin: EdgeInsets.symmetric(vertical: containerMarginVertical),
+      padding: paddingContainer,
+      margin: marginContainer,
       decoration: BoxDecoration(
         color: AppColors.backgroungColor,
         borderRadius: BorderRadius.all(Radius.circular(containerRadius)),
@@ -40,24 +42,18 @@ class PostFooter extends StatelessWidget {
                 Icon(
                   Icons.call,
                   size: iconSize,
+                  color: AppColors.primary,
                 ),
                 SizedBox(
                   width: sizedBoxWidth,
                 ), // Adjust the spacing between icon and text
-                Text(
-                  'Call now',
-                  style: TextStyle(
-                      fontSize: fontSize, fontWeight: FontWeight.bold),
-                ),
+                Text('Call now', style: AppTextStyle.heading())
               ],
             ),
           ),
           // Second group: Icon with rounded border and padding
           Container(
-            padding: EdgeInsets.symmetric(
-              vertical: hourglasIconPaddingVertical,
-              horizontal: hourglasIconPaddingHorizontal,
-            ),
+            padding: paddingHourglassContainer,
             decoration: const BoxDecoration(
               color: Colors.yellow,
               shape: BoxShape.circle,
@@ -83,8 +79,7 @@ class PostFooter extends StatelessWidget {
                       sizedBoxWidth), // Adjust the spacing between icon and text
               Text(
                 '2 km away',
-                style:
-                    TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold),
+                style: AppTextStyle.heading(),
               ),
             ],
           ),

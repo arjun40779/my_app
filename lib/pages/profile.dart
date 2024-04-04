@@ -17,6 +17,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   final double fontSize = SizeConfig.textMultiplier * 4;
+  final double imgHeightWidth = 15 * SizeConfig.widthMultiplier;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,9 +26,16 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       body: ListView(
         children: [
-          const ProfileListTile(
+          ProfileListTile(
             title: "Name",
             subTitle: "Arjun",
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: SizedBox(
+                  height: imgHeightWidth,
+                  width: imgHeightWidth,
+                  child: Image.asset("assets/images/dog.jpg")),
+            ),
           ),
           ProfileListTile(
             title: "Email",
@@ -65,7 +73,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   onPressed: () {},
                   icon: FaIcon(
                     FontAwesomeIcons.phone,
-                    size: 15,
+                    size: SizeConfig.textMultiplier * 6,
                   ))),
           ProfileListTile(
             subTitle: "Terms & condition",
