@@ -12,6 +12,7 @@ class DateFormatter extends TextInputFormatter {
     var formattedValue = '';
 
     for (int i = 0; i < newText.length; i++) {
+      if (formattedValue.length > 9) break;
       formattedValue += newText[i];
 
       if ((i == 3 || i == 5) && i != newText.length - 1) {
