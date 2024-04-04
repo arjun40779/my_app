@@ -76,7 +76,8 @@ class _CustomInputState<T> extends State<CustomInput<T>> {
   late List<TextInputFormatter>? textFormatters;
   late AutovalidateMode? autoValidateMode;
   late bool _isObscure = false;
-
+  final EdgeInsets marginContainer =
+      EdgeInsets.symmetric(vertical: SizeConfig.heightMultiplier);
   @override
   void initState() {
     super.initState();
@@ -103,8 +104,13 @@ class _CustomInputState<T> extends State<CustomInput<T>> {
     autoValidateMode = widget.autoValidateMode;
   }
 
-  final EdgeInsets marginContainer =
-      EdgeInsets.symmetric(vertical: SizeConfig.heightMultiplier);
+  String? _validate(String? value) {
+    if (required == true && (value == null || value.isEmpty)) {
+      return errorMessage ?? 'Please enter some text';
+    }
+    return validation != null ? validation!(value!) : null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -115,16 +121,7 @@ class _CustomInputState<T> extends State<CustomInput<T>> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Text(label ?? ""),
-              if (required == true)
-                const Text(
-                  "*",
-                  style: TextStyle(color: AppColors.red),
-                )
-            ],
-          ),
+          _label(),
           _textFormField(),
         ],
       ),
@@ -142,15 +139,7 @@ class _CustomInputState<T> extends State<CustomInput<T>> {
         hintStyle: TextStyle(color: placeholderColor),
         prefixIcon: leftIcon != null ? Icon(leftIcon) : null,
         suffixIcon: type == TextInputType.visiblePassword
-            ? IconButton(
-                icon:
-                    Icon(_isObscure ? Icons.visibility_off : Icons.visibility),
-                onPressed: () {
-                  setState(() {
-                    _isObscure = !_isObscure;
-                  });
-                },
-              )
+            ? _visibilityOnOff()
             : (rightIconButton),
       ),
       keyboardType: type,
@@ -169,10 +158,27 @@ class _CustomInputState<T> extends State<CustomInput<T>> {
     );
   }
 
-  String? _validate(String? value) {
-    if (required == true && (value == null || value.isEmpty)) {
-      return errorMessage ?? 'Please enter some text';
-    }
-    return validation != null ? validation!(value!) : null;
+  Widget _visibilityOnOff() {
+    return IconButton(
+      icon: Icon(_isObscure ? Icons.visibility_off : Icons.visibility),
+      onPressed: () {
+        setState(() {
+          _isObscure = !_isObscure;
+        });
+      },
+    );
+  }
+
+  Widget _label() {
+    return Row(
+      children: [
+        Text(label ?? ""),
+        if (required == true)
+          const Text(
+            "*",
+            style: TextStyle(color: AppColors.red),
+          )
+      ],
+    );
   }
 }

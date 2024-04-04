@@ -39,17 +39,27 @@ class CustomButton extends StatefulWidget {
 
 class _CustomButtonState extends State<CustomButton> {
   final Color linkColor = AppColors.blue;
+  late Color buttonTextColor;
+  late bool isButtonPressed;
+  late Color buttonColor;
+  late double fontSize;
+  late double width;
+  late BorderSide buttonBorderSide;
+  late TextDecoration decoration;
+  @override
+  void initState() {
+    super.initState();
+    isButtonPressed = widget.disabled;
+    buttonColor = widget.bgColor ?? Colors.blue;
+    buttonTextColor = widget.textColor ?? Colors.white;
+    fontSize = SizeConfig.textMultiplier * 4.5;
+    width = SizeConfig.widthMultiplier * 60;
+    buttonBorderSide = const BorderSide(color: Colors.transparent);
+    decoration = TextDecoration.none;
+  }
 
   @override
   Widget build(BuildContext context) {
-    bool isButtonPressed = widget.disabled;
-    Color buttonColor = widget.bgColor ?? Colors.blue;
-    Color buttonTextColor = widget.textColor ?? Colors.white;
-    double fontSize = SizeConfig.textMultiplier * 4.5;
-    double width = SizeConfig.widthMultiplier * 60;
-    BorderSide buttonBorderSide = const BorderSide(color: Colors.transparent);
-    TextDecoration decoration = TextDecoration.none;
-
     // Set up button appearance based on variant
     switch (widget.variant) {
       case ButtonVariant.outline:

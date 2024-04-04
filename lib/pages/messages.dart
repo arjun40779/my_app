@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_app/utils/validator_functions.dart';
 import '../components/my_app_bar.dart';
 import '../components/custom_button.dart';
-import '../components/input_text_formatter/date_formatter.dart';
-import '../components/input_text_formatter/ohip_text_formatter.dart';
+import '../utils/input_text_formatter/date_formatter.dart';
+import '../utils/input_text_formatter/ohip_text_formatter.dart';
 import '../utils/size_config.dart';
 import '../components/inputfield/input_component.dart';
 

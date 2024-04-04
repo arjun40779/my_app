@@ -24,6 +24,10 @@ class PostFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return _root();
+  }
+
+  Widget _root() {
     return Container(
       padding: paddingContainer,
       margin: marginContainer,
@@ -33,58 +37,60 @@ class PostFooter extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [_callNow(), _hourGlass(), _location()],
+      ),
+    );
+  }
+
+  Widget _callNow() {
+    return TextButton(
+      onPressed: () {},
+      child: Row(
         children: [
-          // First group: Icon followed by text
-          TextButton(
-            onPressed: () {},
-            child: Row(
-              children: [
-                Icon(
-                  Icons.call,
-                  size: iconSize,
-                  color: AppColors.primary,
-                ),
-                SizedBox(
-                  width: sizedBoxWidth,
-                ), // Adjust the spacing between icon and text
-                Text('Call now', style: AppTextStyle.heading())
-              ],
-            ),
+          Icon(
+            Icons.call,
+            size: iconSize,
+            color: AppColors.primary,
           ),
-          // Second group: Icon with rounded border and padding
-          Container(
-            padding: paddingHourglassContainer,
-            decoration: const BoxDecoration(
-              color: Colors.yellow,
-              shape: BoxShape.circle,
-            ),
-            child: Center(
-              child: FaIcon(
-                urgent
-                    ? FontAwesomeIcons.hourglass
-                    : FontAwesomeIcons.solidClock,
-                size: iconSize,
-              ),
-            ),
+          SizedBox(
+            width: sizedBoxWidth,
           ),
-          // Third group: Icon with text
-          Row(
-            children: [
-              Icon(
-                Icons.location_pin,
-                size: iconSize,
-              ),
-              SizedBox(
-                  width:
-                      sizedBoxWidth), // Adjust the spacing between icon and text
-              Text(
-                '2 km away',
-                style: AppTextStyle.heading(),
-              ),
-            ],
-          ),
+          Text('Call now', style: AppTextStyle.heading())
         ],
       ),
+    );
+  }
+
+  Widget _hourGlass() {
+    return Container(
+      padding: paddingHourglassContainer,
+      decoration: const BoxDecoration(
+        color: Colors.yellow,
+        shape: BoxShape.circle,
+      ),
+      child: Center(
+        child: FaIcon(
+          urgent ? FontAwesomeIcons.hourglass : FontAwesomeIcons.solidClock,
+          size: iconSize,
+        ),
+      ),
+    );
+  }
+
+  Widget _location() {
+    return Row(
+      children: [
+        Icon(
+          Icons.location_pin,
+          size: iconSize,
+        ),
+        SizedBox(
+            width: sizedBoxWidth), // Adjust the spacing between icon and text
+        Text(
+          '2 km away',
+          style: AppTextStyle.heading(),
+        ),
+      ],
     );
   }
 }

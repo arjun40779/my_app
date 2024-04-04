@@ -24,14 +24,24 @@ class PostContainer extends StatelessWidget {
     required this.postImgLocation,
   });
 
-  final EdgeInsets _containerPadding = EdgeInsets.symmetric(
+  final EdgeInsets _paddingContainer = EdgeInsets.symmetric(
     vertical: SizeConfig.heightMultiplier * 2,
     horizontal: SizeConfig.widthMultiplier * 6,
   );
   final EdgeInsets _paddingLeftContainer =
       EdgeInsets.symmetric(vertical: SizeConfig.heightMultiplier * 1);
+  final EdgeInsets _paddingPhone =
+      EdgeInsets.symmetric(vertical: SizeConfig.heightMultiplier * 1.4);
+  final BorderRadius radiusPhone =
+      BorderRadius.circular(SizeConfig.widthMultiplier * 2.5);
   final TextStyle _headingStyle = AppTextStyle.heading();
   final TextStyle _subHeadingStyle = AppTextStyle.subHeading();
+  final Border _borderContainer = Border(
+    top: BorderSide(
+      color: AppColors.backgroungColor,
+      width: SizeConfig.widthMultiplier * 4,
+    ),
+  );
   final double _postContentWidth = SizeConfig.widthMultiplier * 50;
   final double _postImgWidth = SizeConfig.widthMultiplier * 30;
   final double _userPhoneWidth = SizeConfig.widthMultiplier * 30;
@@ -39,15 +49,8 @@ class PostContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: _containerPadding,
-      decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(
-            color: AppColors.backgroungColor,
-            width: SizeConfig.widthMultiplier * 4,
-          ),
-        ),
-      ),
+      padding: _paddingContainer,
+      decoration: BoxDecoration(border: _borderContainer),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -70,7 +73,7 @@ class PostContainer extends StatelessWidget {
   Widget _postDate() {
     return Text(postDate,
         style: AppTextStyle.normal(
-            color: urgent ? Colors.red : Colors.black,
+            color: urgent ? AppColors.red : AppColors.primary,
             fontWeight: FontWeight.bold));
   }
 
@@ -93,11 +96,6 @@ class PostContainer extends StatelessWidget {
   }
 
   Widget _postImageAndPhone() {
-    final EdgeInsets paddingPhone =
-        EdgeInsets.symmetric(vertical: SizeConfig.heightMultiplier * 1.4);
-    final BorderRadius radiusPhone =
-        BorderRadius.circular(SizeConfig.widthMultiplier * 2.5);
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -109,9 +107,9 @@ class PostContainer extends StatelessWidget {
         SizedBox(height: SizeConfig.heightMultiplier),
         Container(
           width: _userPhoneWidth,
-          padding: paddingPhone,
+          padding: _paddingPhone,
           decoration: BoxDecoration(
-            color: Colors.black,
+            color: AppColors.primary,
             borderRadius: radiusPhone,
           ),
           child: Center(

@@ -51,8 +51,7 @@ class CapturePage extends StatelessWidget {
   Widget _alertDialogButton(BuildContext context, String text) {
     return TextButton(
       onPressed: () {
-        // Add onPressed action for "Allow Once" or "Deny"
-        Navigator.of(context).pop(); // Close the dialog
+        Navigator.of(context).pop();
       },
       child: Text(
         text,
